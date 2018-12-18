@@ -1,13 +1,13 @@
 import React from 'react'
 import apiKey from '../store'
-import { StyleSheet } from 'react-native'
 import {
-  Left,Body,Icon,Text,Card,List,Right,Title,Button,Header,
-  Content,CardItem,ListItem,Thumbnail,Container, Spinner,Toast,
+  Left,Body,Icon,Text,Card,List,Right,Title,Button,Header,Item,
+  Input,Content,ListItem,Thumbnail,Container, Spinner,Toast,
 } from "native-base"
 
 export default class App extends React.Component {
   state = {
+    query: '',
     companies: [],
     page_number: 1,
     result_count: 0,
@@ -18,36 +18,54 @@ export default class App extends React.Component {
       this.setState({page_number: this.state.page_number + n, companies: []}, () => this.getCompanies())
   }
   getCompanies = async () => {
-    const { page_number } = this.state
-    let res = await fetch(`https://api.intrinio.com/companies?api_key=${apiKey}&page_number=${page_number}&page_size=100`)
+    const { page_number, query } = this.state
+    let res = await
+      fetch(`https://api.intrinio.com/companies?api_key=${apiKey}&page_number=${page_number}&page_size=100&query=${query}`)
     res = await res.json()
     // console.log(res)
     if(res.data)
-      this.setState({companies: res.data, result_count: res.result_count})
+      this.setState({companies: res.data})
     else
       Toast.show({text: "Something went wrong!",buttonText: "Okay",type: "danger"})
   }
   render() {
-    const { page_number, companies, result_count } = this.state
+    const { page_number, companies, query } = this.state
     return (
       <Container style={{ backgroundColor: "#fff" }}>
-        <Header><Left /><Body><Title>AzikInfo</Title></Body><Right /></Header>
-        <Content padder>
-          <Card><CardItem><Body style={styles.card}>
-            <Button light onPress={() => this.paginate(-1)}>
+        <Header>
+          <Left>
+            <Button transparent onPress={() => this.paginate(-1)}>
               <Icon name='ios-arrow-back'/>
             </Button>
-            <Text>
-              {`${(101*page_number)-99-page_number}-${page_number*100} of ${result_count}`}
-            </Text>
-            <Button light onPress={() => this.paginate(1)}>
+          </Left>
+          <Body><Title>
+            {`${(101*page_number)-99-page_number}-${page_number*100}`}
+          </Title></Body>
+          <Right>
+            <Button transparent onPress={() => this.paginate(1)}>
               <Icon name='ios-arrow-forward' />
             </Button>
-          </Body></CardItem></Card>
+          </Right>
+        </Header>
+        <Content padder>
+          <Item rounded style={{paddingHorizontal: 10, marginVertical: 20}}>
+            <Input
+              value={query}
+              placeholder='Search for a company'
+              onChangeText={query => this.setState({query, page_number: 1}, this.getCompanies)}
+            />
+            <Icon name='ios-search' />
+          </Item>
           {companies.length === 0 ? <Spinner color="gray" /> : (
-            <List dataArray={this.state.companies}
+            <List 
+              dataArray={companies}
               renderRow={(item) => (
-                <ListItem thumbnail noBorder button onPress={() => this.props.navigation.navigate('Info', {ticker: item.ticker})}>
+                <ListItem
+                  button
+                  noBorder
+                  thumbnail
+                  onPress={() => this.props.navigation.navigate('Info', {ticker: item.ticker})}
+                >
                   <Left>
                     <Thumbnail source={{uri: `https://api.adorable.io/avatars/20/${item.ticker}@adorable.png`}}/>
                   </Left>
@@ -62,11 +80,3 @@ export default class App extends React.Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  card: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-})
