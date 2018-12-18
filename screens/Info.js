@@ -34,35 +34,35 @@ export default class App extends React.Component {
           <Card>
             <CardItem style={styles.info}>
               <Text style={styles.infoText1}>Name:</Text>
-              <Text note style={styles.infoText2}>{info.name}</Text>
+              <Text style={styles.infoText2}>{info.name}</Text>
             </CardItem>
             <CardItem style={styles.info}>
               <Text style={styles.infoText1}>CEO:</Text>
-              <Text note style={styles.infoText2}>{info.ceo}</Text>
+              <Text style={styles.infoText2}>{info.ceo}</Text>
             </CardItem>
             <CardItem style={styles.info}>
               <Text style={styles.infoText1}>Url:</Text>
-              <Text note style={styles.infoText2}>{info.company_url}</Text>
+              <Text style={styles.infoText2}>{info.company_url}</Text>
             </CardItem>
             <CardItem style={styles.info}>
               <Text style={styles.infoText1}>Phone:</Text>
-              <Text note style={styles.infoText2}>{info.business_phone_no}</Text>
+              <Text style={styles.infoText2}>{info.business_phone_no}</Text>
             </CardItem>
             <CardItem style={styles.info}>
               <Text style={styles.infoText1}>Sector:</Text>
-              <Text note style={styles.infoText2}>{info.sector}</Text>
+              <Text style={styles.infoText2}>{info.sector}</Text>
             </CardItem>
             <CardItem style={styles.info}>
               <Text style={styles.infoText1}>Address:</Text>
-              <Text note style={styles.infoText2}>{info.business_address}</Text>
+              <Text style={styles.infoText2}>{info.business_address}</Text>
             </CardItem>
             <CardItem style={styles.info}>
               <Text style={styles.infoText1}>Employees:</Text>
-              <Text note style={styles.infoText2}>{info.employees}</Text>
+              <Text style={styles.infoText2}>{info.employees}</Text>
             </CardItem>
             <CardItem style={styles.info}>
               <Text style={styles.infoText1}>Headquarter:</Text>
-              <Text note style={styles.infoText2}>{info.hq_state}, {info.hq_country}</Text>
+              <Text style={styles.infoText2}>{info.hq_state}, {info.hq_country}</Text>
             </CardItem>
           </Card>
           <Card><CardItem><Text note>{info.long_description}</Text></CardItem></Card>
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   info: {justifyContent: 'space-between'},
   infoText1: {
     fontSize: 14,
-    color: '#444',
+    color: '#aaa',
     fontWeight: '600',
   },
   infoText2: {
