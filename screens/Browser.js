@@ -2,7 +2,7 @@ import React from 'react'
 import { WebView } from 'react-native'
 import {Left,Body,Text,Right,Title,Button,Icon,Header,Container} from "native-base"
 
-export default class App extends React.Component {
+export default class Browser extends React.Component {
   render() {
     return (
       <Container style={{ backgroundColor: "#fff" }}>

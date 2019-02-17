@@ -3,7 +3,7 @@ import apiKey from '../store'
 import { StyleSheet } from 'react-native'
 import {
   Left,Body,Text,Card,Right,Title,Button,Icon,
-  Header,Content,CardItem,Container,Spinner
+  Header,Content,CardItem,Container,Spinner,
 } from "native-base"
 
 export default class App extends React.Component {
@@ -78,13 +78,6 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   info: {justifyContent: 'space-between'},
-  infoText1: {
-    fontSize: 14,
-    color: '#aaa',
-    fontWeight: '600',
-  },
-  infoText2: {
-    width: '70%',
-    textAlign: 'right',
-  }
+  infoText2: {width: '70%', textAlign: 'right'},
+  infoText1: {fontSize: 14, color: '#aaa', fontWeight: '600'},
 })

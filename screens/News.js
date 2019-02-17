@@ -14,7 +14,7 @@ export default class App extends React.Component {
     timer = setTimeout(() => {
       if(this.state.news.length === 0)
         this.setState({noHope: true, news: [0]})
-    }, 4000);
+    }, 10000);
   }
   getNews = async () => {
     const ticker = this.props.navigation.getParam('ticker')
